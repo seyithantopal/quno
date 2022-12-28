@@ -1,4 +1,6 @@
 import Head from 'next/head';
+import Filter from '../../components/Filter';
+import Swipeable from '../../components/Swipeable';
 import styles from '../../styles/Search.module.css';
 import { adelleSansFont, nettoFont } from '../../utils/@fonts';
 
@@ -37,6 +39,9 @@ const DoctorSearch = () => {
             </div>
           </div>
         </div>
+      </section>
+      <section className={styles.filters}>
+        <Swipeable />
       </section>
     </>
   );

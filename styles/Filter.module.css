@@ -1,0 +1,28 @@
+.buttonContainer .button,
+.buttonContainer .buttonActive {
+  border-radius: 24px;
+  -webkit-border-radius: 24px;
+  background-color: var(--secondary-color);
+  background-color: #fff;
+  color: var(--filter-inactive-font-color);
+  border: 1px solid var(--filter-inactive-border-color);
+  width: max-content;
+  font-size: 14px;
+  padding: 10px 15px 10px 15px;
+  cursor: pointer;
+}
+
+.buttonContainer .button:hover {
+  background-color: var(--white-color-5);
+}
+
+.buttonContainer .buttonActive:hover {
+  background-color: var(--secondary-color-5);
+  border: 1px solid var(--secondary-color-5);
+}
+
+.buttonContainer .buttonActive {
+  border: 1px solid var(--filter-active-border-color);
+  color: var(--filter-active-font-color);
+  background-color: var(--secondary-color);
+}

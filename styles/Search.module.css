@@ -11,14 +11,12 @@
 
 .heroSection {
   background-color: var(--primary-color);
-  height: 340px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding-left: 21px;
-  padding-right: 21px;
+  padding: 44px 21px 44px 21px;
 }
 
 .heroSectionHeader {
@@ -51,13 +49,22 @@
   gap: 8px;
 }
 
+.filters {
+  gap: 12px;
+  padding: 0 21px 0 21px;
+  margin-top: 30px;
+}
+
 /* Mobile */
 @media (max-width: 700px) {
 }
 
 /* Tablet and Smaller Desktop */
-@media (min-width: 701px) and (max-width: 1120px) {
-  .grid {
-    grid-template-columns: repeat(2, 50%);
+@media (min-width: 700px) and (max-width: 1536px) {
+  .filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 }
