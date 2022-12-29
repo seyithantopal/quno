@@ -1,5 +1,5 @@
-%buttonPrimary {
-  @extend %button;
+%filterButtonPrimary {
+  @extend %filterButton;
   border: 1px solid $filter-active-border-color;
   color: $filter-active-font-color;
   background-color: $secondary-color;
@@ -10,8 +10,8 @@
   }
 }
 
-%buttonSecondary {
-  @extend %button;
+%filterButtonSecondary {
+  @extend %filterButton;
 
   &:hover {
     background-color: $white-color-5;

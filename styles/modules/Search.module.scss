@@ -55,6 +55,112 @@
   margin-top: 30px;
 }
 
+.doctorsSection {
+  padding: 0 21px 0 21px;
+  margin-top: 32px;
+
+  .gridContainer {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: minmax(110px, auto) 1fr;
+    gap: 10px;
+
+    .image {
+      .personImage {
+        width: 96px;
+        height: 96px;
+      }
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      .speciality {
+        font-size: 10px;
+        color: #484848;
+        font-weight: 700;
+      }
+
+      .name {
+        font-size: 22px;
+        color: $primary-color;
+        font-weight: 400;
+      }
+
+      .address {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        color: #484848;
+        font-weight: 400;
+      }
+    }
+
+    .score {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      text-align: center;
+
+      .round {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 1.35px solid $secondary-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .quality {
+        font-size: 12px;
+        color: #101010;
+        font-weight: 700;
+      }
+
+      .qunoscore {
+        font-size: 10px;
+        color: #484848;
+        font-weight: 400;
+      }
+    }
+
+    .startingFrom {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .text {
+        font-weight: 400;
+        color: #101010;
+        font-size: 12px;
+      }
+
+      .price {
+        font-weight: 700;
+        color: #101010;
+        font-size: 12px;
+      }
+    }
+
+    .reviews {
+      .item {
+        @extend %USPItem;
+      }
+    }
+
+    .CTAButton {
+      button {
+        @extend %buttonSecondary;
+      }
+    }
+  }
+}
+
 /* Mobile */
 @media (max-width: 700px) {
 }

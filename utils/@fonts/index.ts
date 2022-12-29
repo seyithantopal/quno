@@ -6,6 +6,14 @@ export const nettoFont = localFont({
 });
 
 export const adelleSansFont = localFont({
-  src: '../../assets/fonts/AdelleSans.ttf',
-  weight: '400',
+  src: [
+    {
+      path: '../../assets/fonts/AdelleSans.ttf',
+      weight: '400',
+    },
+    {
+      path: '../../assets/fonts/AdelleSans.ttf',
+      weight: '700',
+    },
+  ],
 });

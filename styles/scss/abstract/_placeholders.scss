@@ -1,0 +1,46 @@
+%filterButton {
+  border-radius: 24px;
+  -webkit-border-radius: 24px;
+  background-color: #fff;
+  color: $filter-inactive-font-color;
+  border: 1px solid $filter-inactive-border-color;
+  width: max-content;
+  font-size: 14px;
+  padding: 10px 15px 10px 15px;
+  cursor: pointer;
+}
+
+%button {
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  background-color: #fff;
+  color: $primary-color;
+  border: 1px solid $primary-color;
+  width: 100%;
+  font-size: 14px;
+  padding: 10px 15px 10px 15px;
+  cursor: pointer;
+  font-weight: 400;
+}
+
+%USPItem {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  color: #101010;
+  font-size: 12px;
+  align-items: center;
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .text {
+    font-weight: 400;
+  }
+
+  .textBold {
+    font-weight: 700;
+  }
+}

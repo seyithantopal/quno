@@ -15,7 +15,7 @@ const Filter: FC<FilterProps> = ({ label }) => {
       <div className={styles.buttonContainer}>
         <button
           className={`${
-            isActive ? styles.buttonPrimary : styles.buttonSecondary
+            isActive ? styles.filterButtonPrimary : styles.filterButtonSecondary
           }`}
           onClick={handleClick}
         >

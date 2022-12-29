@@ -1,21 +1,9 @@
 .buttonContainer {
-  .buttonPrimary {
-    @extend %btn;
-    border: 1px solid $filter-active-border-color;
-    color: $filter-active-font-color;
-    background-color: $secondary-color;
-
-    &:hover {
-      background-color: $secondary-color-5;
-      border: 1px solid $secondary-color-5;
-    }
+  .filterButtonPrimary {
+    @extend %filterButtonPrimary;
   }
 
-  .buttonSecondary {
-    @extend %btn;
-
-    &:hover {
-      background-color: $white-color-5;
-    }
+  .filterButtonSecondary {
+    @extend %filterButtonSecondary;
   }
 }
