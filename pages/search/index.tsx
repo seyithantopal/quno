@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import Head from 'next/head';
 import Filter from '../../components/Filter';
 import Swipeable from '../../components/Swipeable';
@@ -6,6 +7,8 @@ import { SwipeableType } from '../../utils/@types';
 import styles from '../../styles/modules/Search.module.scss';
 import Divider from '../../components/Divider';
 import Layout from '../../components/Layout';
+import { mockupDoctors } from '../api/mockups';
+import { currencyFormat } from '../../utils/@helpers/formatter';
 
 const DoctorSearch = () => {
   const USPFilters: SwipeableType[] = [
@@ -62,157 +65,103 @@ const DoctorSearch = () => {
           <section className={styles.filters}>
             <Swipeable items={USPFilters} />
           </section>
-          <section className={styles.doctorsSection}>
-            <div className={styles.gridContainer}>
-              <div className={styles.image}>
-                <img className={styles.personImage} src="/images/person.png" />
-              </div>
-              <div className={styles.info}>
-                <div
-                  className={`${styles.speciality} ${adelleSansFont.className}`}
-                >
-                  HAIR TRANSPLANT
-                </div>
-                <div className={`${styles.name} ${nettoFont.className}`}>
-                  Dr. Emrah Cinik, MD
-                </div>
-                <div
-                  className={`${styles.address} ${adelleSansFont.className}`}
-                >
-                  <div>
-                    <img className={styles.logo} src="/images/pin.svg" />
+          {mockupDoctors.map((doctor, index) => (
+            <Fragment key={index}>
+              <section className={styles.doctorsSection}>
+                <div className={styles.gridContainer}>
+                  <div className={styles.image}>
+                    <img
+                      className={styles.personImage}
+                      src="/images/person.png"
+                    />
                   </div>
-                  <div>Istanbul, Turkey</div>
-                </div>
-              </div>
-              <div className={styles.score}>
-                <div className={`${styles.round} ${nettoFont.className}`}>
-                  <p>9.4</p>
-                </div>
-                <div className={adelleSansFont.className}>
-                  <p className={styles.quality}>Excellent</p>
-                  <p className={styles.qunoscore}>QUNOSCORE</p>
-                </div>
-              </div>
-              <div className={`${styles.reviews} ${adelleSansFont.className}`}>
-                <div className={styles.item}>
-                  <div>
-                    <img className={styles.icon} src="/images/star.svg" />
+                  <div className={styles.info}>
+                    <div
+                      className={`${styles.speciality} ${adelleSansFont.className}`}
+                    >
+                      {doctor.speciality}
+                    </div>
+                    <div className={`${styles.name} ${nettoFont.className}`}>
+                      {doctor.name}
+                    </div>
+                    <div
+                      className={`${styles.address} ${adelleSansFont.className}`}
+                    >
+                      <div>
+                        <img className={styles.logo} src="/images/pin.svg" />
+                      </div>
+                      <div>{doctor.location}</div>
+                    </div>
                   </div>
-                  <div>
-                    <span className={styles.textBold}>4.8</span>
-                    <span className={styles.text}> (190 REVIEWS)</span>
+                  <div className={styles.score}>
+                    <div className={`${styles.round} ${nettoFont.className}`}>
+                      <p>{doctor.qunoscore.score}</p>
+                    </div>
+                    <div className={adelleSansFont.className}>
+                      <p className={styles.quality}>
+                        {doctor.qunoscore.quality}
+                      </p>
+                      <p className={styles.qunoscore}>QUNOSCORE</p>
+                    </div>
                   </div>
-                </div>
-                <div className={styles.item}>
-                  <div>
-                    <img className={styles.icon} src="/images/check.svg" />
+                  <div
+                    className={`${styles.reviews} ${adelleSansFont.className}`}
+                  >
+                    <div className={styles.item}>
+                      <div>
+                        <img className={styles.icon} src="/images/star.svg" />
+                      </div>
+                      <div>
+                        <span className={styles.textBold}>
+                          {doctor.reviews.score}
+                        </span>
+                        <span
+                          className={styles.text}
+                        >{` (${doctor.reviews.totalNumber} REVIEWS)`}</span>
+                      </div>
+                    </div>
+                    <div className={styles.item}>
+                      <div>
+                        <img className={styles.icon} src="/images/check.svg" />
+                      </div>
+                      <div>
+                        <span className={styles.text}>
+                          {`${doctor.numbersOfTreatments} treatments last year`}
+                        </span>
+                      </div>
+                    </div>
+                    <div className={styles.item}>
+                      <div>
+                        <img className={styles.icon} src="/images/check.svg" />
+                      </div>
+                      <div>
+                        <span className={styles.text}>
+                          {`${doctor.yearsOfExperience} years of experience`}
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <span className={styles.text}>
-                      1270 treatments last year
-                    </span>
+                  <div
+                    className={`${styles.startingFrom} ${adelleSansFont.className}`}
+                  >
+                    <p className={styles.text}>starting from</p>
+                    <p className={styles.price}>
+                      {currencyFormat(
+                        doctor.price.amount,
+                        doctor.price.currency,
+                      )}
+                    </p>
                   </div>
-                </div>
-                <div className={styles.item}>
-                  <div>
-                    <img className={styles.icon} src="/images/check.svg" />
-                  </div>
-                  <div>
-                    <span className={styles.text}>5 years of experience</span>
-                  </div>
-                </div>
-              </div>
-              <div
-                className={`${styles.startingFrom} ${adelleSansFont.className}`}
-              >
-                <p className={styles.text}>starting from</p>
-                <p className={styles.price}>€2,090</p>
-              </div>
-              <div className={styles.CTAButton}>
-                <button className={nettoFont.className}>
-                  See doctor profile
-                </button>
-              </div>
-            </div>
-          </section>
-          <div className={styles.dividerContainer}>
-            <Divider />
-          </div>
-          <section className={styles.doctorsSection}>
-            <div className={styles.gridContainer}>
-              <div className={styles.image}>
-                <img className={styles.personImage} src="/images/person.png" />
-              </div>
-              <div className={styles.info}>
-                <div
-                  className={`${styles.speciality} ${adelleSansFont.className}`}
-                >
-                  HAIR TRANSPLANT
-                </div>
-                <div className={`${styles.name} ${nettoFont.className}`}>
-                  Dr. Emrah Cinik, MD
-                </div>
-                <div
-                  className={`${styles.address} ${adelleSansFont.className}`}
-                >
-                  <div>
-                    <img className={styles.logo} src="/images/pin.svg" />
-                  </div>
-                  <div>Istanbul, Turkey</div>
-                </div>
-              </div>
-              <div className={styles.score}>
-                <div className={`${styles.round} ${nettoFont.className}`}>
-                  <p>9.4</p>
-                </div>
-                <div className={adelleSansFont.className}>
-                  <p className={styles.quality}>Excellent</p>
-                  <p className={styles.qunoscore}>QUNOSCORE</p>
-                </div>
-              </div>
-              <div className={`${styles.reviews} ${adelleSansFont.className}`}>
-                <div className={styles.item}>
-                  <div>
-                    <img className={styles.icon} src="/images/star.svg" />
-                  </div>
-                  <div>
-                    <span className={styles.textBold}>4.8</span>
-                    <span className={styles.text}> (190 REVIEWS)</span>
+                  <div className={styles.CTAButton}>
+                    <button className={nettoFont.className}>
+                      See doctor profile
+                    </button>
                   </div>
                 </div>
-                <div className={styles.item}>
-                  <div>
-                    <img className={styles.icon} src="/images/check.svg" />
-                  </div>
-                  <div>
-                    <span className={styles.text}>
-                      1270 treatments last year
-                    </span>
-                  </div>
-                </div>
-                <div className={styles.item}>
-                  <div>
-                    <img className={styles.icon} src="/images/check.svg" />
-                  </div>
-                  <div>
-                    <span className={styles.text}>5 years of experience</span>
-                  </div>
-                </div>
-              </div>
-              <div
-                className={`${styles.startingFrom} ${adelleSansFont.className}`}
-              >
-                <p className={styles.text}>starting from</p>
-                <p className={styles.price}>€2,090</p>
-              </div>
-              <div className={styles.CTAButton}>
-                <button className={nettoFont.className}>
-                  See doctor profile
-                </button>
-              </div>
-            </div>
-          </section>
+              </section>
+              {index !== mockupDoctors.length - 1 && <Divider />}
+            </Fragment>
+          ))}
         </div>
       </Layout>
     </>
