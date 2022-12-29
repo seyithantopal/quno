@@ -4,13 +4,13 @@
   overflow-x: auto;
   gap: 12px;
   -webkit-overflow-scrolling: touch;
-}
 
-.items::-webkit-scrollbar {
-  display: none;
-}
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-.item {
-  flex: 0 0 auto;
-  margin-right: 3px;
+  .item {
+    flex: 0 0 auto;
+    margin-right: 3px;
+  }
 }

@@ -1,12 +1,12 @@
 import { FC, useEffect, useState, useRef } from 'react';
-import styles from '../../styles/Swipeable.module.css';
-import Filter from '../Filter';
+import { SwipeableType } from '../../utils/@types';
+import styles from '../../styles/modules/Swipeable.module.scss';
 
-interface FilterProps {
-  // label: string;
+interface SwipeableProps {
+  items: SwipeableType[];
 }
 
-const Swipeable: FC<FilterProps> = () => {
+const Swipeable: FC<SwipeableProps> = ({ items }) => {
   const [isActive, setIsActive] = useState(false);
   const swipeableRef = useRef<HTMLInputElement | null>(null);
 
@@ -73,18 +73,11 @@ const Swipeable: FC<FilterProps> = () => {
   return (
     <>
       <div className={styles.items} ref={swipeableRef}>
-        <div className={styles.item}>
-          <Filter label="Best Qunoscore" />
-        </div>
-        <div className={styles.item}>
-          <Filter label="Best Reviews" />
-        </div>
-        <div className={styles.item}>
-          <Filter label="Lowest Qunoscore" />
-        </div>
-        <div className={styles.item}>
-          <Filter label="Lowest Qunoscore" />
-        </div>
+        {items.map((item, index) => (
+          <div className={styles.item} key={index}>
+            {item.content}
+          </div>
+        ))}
       </div>
     </>
   );

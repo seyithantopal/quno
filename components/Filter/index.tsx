@@ -1,7 +1,5 @@
-import Head from 'next/head';
 import { FC, useState } from 'react';
-import styles from '../../styles/Filter.module.css';
-import { adelleSansFont, nettoFont } from '../../utils/@fonts';
+import styles from '../../styles/modules/Filter.module.scss';
 
 interface FilterProps {
   label: string;
@@ -16,7 +14,9 @@ const Filter: FC<FilterProps> = ({ label }) => {
     <>
       <div className={styles.buttonContainer}>
         <button
-          className={`${isActive ? styles.buttonActive : styles.button}`}
+          className={`${
+            isActive ? styles.buttonPrimary : styles.buttonSecondary
+          }`}
           onClick={handleClick}
         >
           {label}

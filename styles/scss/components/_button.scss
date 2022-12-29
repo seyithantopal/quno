@@ -1,0 +1,12 @@
+%btn {
+  border-radius: 24px;
+  -webkit-border-radius: 24px;
+  background-color: $secondary-color;
+  background-color: #fff;
+  color: $filter-inactive-font-color;
+  border: 1px solid $filter-inactive-border-color;
+  width: max-content;
+  font-size: 14px;
+  padding: 10px 15px 10px 15px;
+  cursor: pointer;
+}

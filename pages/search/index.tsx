@@ -1,10 +1,25 @@
 import Head from 'next/head';
 import Filter from '../../components/Filter';
 import Swipeable from '../../components/Swipeable';
-import styles from '../../styles/Search.module.css';
 import { adelleSansFont, nettoFont } from '../../utils/@fonts';
+import { SwipeableType } from '../../utils/@types';
+import styles from '../../styles/modules/Search.module.scss';
 
 const DoctorSearch = () => {
+  const USPFilters: SwipeableType[] = [
+    {
+      content: <Filter label="Best Qunoscore" />,
+    },
+    {
+      content: <Filter label="Best Reviews" />,
+    },
+    {
+      content: <Filter label="Lowest Qunoscore" />,
+    },
+    {
+      content: <Filter label="Lowest Qunoscore" />,
+    },
+  ];
   return (
     <>
       <Head>
@@ -41,7 +56,7 @@ const DoctorSearch = () => {
         </div>
       </section>
       <section className={styles.filters}>
-        <Swipeable />
+        <Swipeable items={USPFilters} />
       </section>
     </>
   );
