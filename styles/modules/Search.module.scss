@@ -1,14 +1,3 @@
-.logoContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 72px;
-
-  .logo {
-    width: 140px;
-  }
-}
-
 .heroSection {
   background-color: $primary-color;
   display: flex;
@@ -51,12 +40,10 @@
 
 .filters {
   gap: 12px;
-  padding: 0 21px 0 21px;
-  margin-top: 30px;
+  padding-top: 30px;
 }
 
 .doctorsSection {
-  padding: 0 21px 0 21px;
   margin-top: 32px;
 
   .gridContainer {
@@ -159,6 +146,10 @@
       }
     }
   }
+}
+
+.content {
+  padding: 0 21px 0 21px;
 }
 
 /* Mobile */
