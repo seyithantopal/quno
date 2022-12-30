@@ -13,6 +13,7 @@ import Layout from '../../components/Layout';
 import { mockupDoctors } from '../api/mockups';
 import { currencyFormat } from '../../utils/@helpers/formatter';
 import { useFilterDoctors } from '../../utils/@hooks/useFilterDoctors';
+import { BACKEND_SERVICE_URL } from '../../utils/@contants';
 
 interface SearchProps {
   doctors: Doctor[];
@@ -177,7 +178,7 @@ const DoctorSearch: FC<SearchProps> = ({ doctors }) => {
 export const getServerSideProps: GetServerSideProps<SearchProps> = async (
   context,
 ) => {
-  const { data } = await axios.get(`http://localhost:4000`);
+  const { data } = await axios.get(BACKEND_SERVICE_URL);
 
   return {
     props: {
