@@ -1,12 +1,12 @@
 %filterButtonPrimary {
   @extend %filterButton;
-  border: 1px solid $filter-active-border-color;
-  color: $filter-active-font-color;
-  background-color: $secondary-color;
+  border: 1px solid $primary-color;
+  color: $black-5;
+  background-color: $primary-color;
 
   &:hover {
-    background-color: $secondary-color-5;
-    border: 1px solid $secondary-color-5;
+    background-color: $primary-color-5;
+    border: 1px solid $primary-color-5;
   }
 }
 
@@ -14,6 +14,6 @@
   @extend %filterButton;
 
   &:hover {
-    background-color: $white-color-5;
+    background-color: $white-5;
   }
 }

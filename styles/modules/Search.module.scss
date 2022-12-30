@@ -1,5 +1,9 @@
+.content {
+  padding: 0 21px 0 21px;
+}
+
 .heroSection {
-  background-color: $primary-color;
+  background-color: $secondary-color;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,12 +13,12 @@
 
   .heroSectionHeader {
     font-size: 44px;
-    color: #fff;
+    color: $white-100;
   }
 
   .heroSectionUSP {
     font-size: 18px;
-    color: #fff;
+    color: $white-100;
     margin-top: 48px;
 
     .USPList {
@@ -66,13 +70,13 @@
 
       .speciality {
         font-size: 10px;
-        color: #484848;
+        color: $gray-5;
         font-weight: 700;
       }
 
       .name {
         font-size: 22px;
-        color: $primary-color;
+        color: $secondary-color;
         font-weight: 400;
       }
 
@@ -81,7 +85,7 @@
         flex-direction: row;
         gap: 10px;
         align-items: center;
-        color: #484848;
+        color: $gray-5;
         font-weight: 400;
       }
     }
@@ -97,7 +101,7 @@
         width: 36px;
         height: 36px;
         border-radius: 50%;
-        border: 1.35px solid $secondary-color;
+        border: 1.35px solid $primary-color;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -105,13 +109,13 @@
 
       .quality {
         font-size: 12px;
-        color: #101010;
+        color: $black-5;
         font-weight: 700;
       }
 
       .qunoscore {
         font-size: 10px;
-        color: #484848;
+        color: $gray-5;
         font-weight: 400;
       }
     }
@@ -123,13 +127,13 @@
 
       .text {
         font-weight: 400;
-        color: #101010;
+        color: $black-5;
         font-size: 12px;
       }
 
       .price {
         font-weight: 700;
-        color: #101010;
+        color: $black-5;
         font-size: 12px;
       }
     }
@@ -146,10 +150,6 @@
       }
     }
   }
-}
-
-.content {
-  padding: 0 21px 0 21px;
 }
 
 /* Mobile */
