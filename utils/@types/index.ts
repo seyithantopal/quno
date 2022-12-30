@@ -4,6 +4,7 @@ export type SwipeableType = {
 
 export interface Doctor {
   name: string;
+  speciality: string;
   slug: string;
   city: string;
   country: string;
@@ -14,4 +15,10 @@ export interface Doctor {
   yearsExperience: number;
   basePrice: number;
   avatarUrl: string;
+}
+
+export enum FILTER_ENUM {
+  BEST_QUNOSCORE = 'Best Qunoscore',
+  BEST_REVIEWS = 'Best Reviews',
+  LOWEST_QUNOSCORE = 'Lowest Qunoscore',
 }
