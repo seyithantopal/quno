@@ -7,44 +7,60 @@ import { Doctor } from '../../utils/@types';
 import Layout from '../../components/Layout';
 import styles from '../../styles/modules/Profile.module.scss';
 import { adelleSansFont, nettoFont } from '../../utils/@fonts';
+import { BACKEND_SERVICE_URL } from '../../utils/@contants';
+import {
+  calculatePercantageOfReviews,
+  currencyFormat,
+  yearsOfExperienceToSince,
+} from '../../utils/@helpers/formatter';
 
-/* interface ProfileProps {
+interface ProfileProps {
   doctor: Doctor;
-} */
+}
 
-const Profile: FC = () => {
+interface ProfileParams extends ParsedUrlQuery {
+  slug: string;
+}
+
+const Profile: FC<ProfileProps> = ({ doctor }) => {
+  const percantageOfReviews = calculatePercantageOfReviews(
+    doctor.ratingsAverage,
+  );
+  const sinceYear = yearsOfExperienceToSince(doctor.yearsExperience);
   return (
     <>
       <Head>
-        <title>{'doctor.name'}</title>
+        <title>{`Qunomedical | ${doctor.name}`}</title>
       </Head>
       <Layout>
         <section className={styles.doctorPictureSection}>
-          <img className={styles.image} src="/images/mert_yuce.png" />
+          <img className={styles.image} src={doctor.avatarUrl} />
         </section>
         <div className={styles.content}>
           <section className={styles.info}>
-            <div className={styles.speciality}>HAIR TRANSPLANT</div>
+            <div className={styles.speciality}>
+              {doctor.speciality.toUpperCase()}
+            </div>
             <div className={`${styles.name} ${nettoFont.className}`}>
-              Dr. Mert Yüce, DDS
+              {doctor.name}
             </div>
             <div className={`${styles.address} ${adelleSansFont.className}`}>
               <div>
                 <img className={styles.icon} src="/images/pin.svg" />
               </div>
               <div>
-                <span className={styles.underlined}>Dentaglobal</span>, Izmir,
-                Turkey
+                <span className={styles.underlined}>{doctor.hospital}</span>
+                <span>{`, ${doctor.city}, ${doctor.country}`}</span>
               </div>
             </div>
             <div className={styles.score}>
               <div className={`${styles.circle} ${nettoFont.className}`}>
                 <div className={styles.outer}>
-                  <div className={styles.inner}>9.7</div>
+                  <div className={styles.inner}>{doctor.qunoScoreNumber}</div>
                 </div>
               </div>
               <div className={adelleSansFont.className}>
-                <p className={styles.quality}>Excellent</p>
+                <p className={styles.quality}>{doctor.qunoScoreNumber}</p>
                 <p className={styles.qunoscore}>QUNOSCORE</p>
               </div>
             </div>
@@ -54,8 +70,12 @@ const Profile: FC = () => {
                   <img className={styles.icon} src="/images/star.svg" />
                 </div>
                 <div>
-                  <span className={styles.textBold}>4.8</span>
-                  <span className={styles.text}>{` (${190} REVIEWS)`}</span>
+                  <span className={styles.textBold}>
+                    {doctor.ratingsAverage}
+                  </span>
+                  <span
+                    className={styles.text}
+                  >{` (${doctor.reviews} REVIEWS)`}</span>
                 </div>
               </div>
 
@@ -64,7 +84,9 @@ const Profile: FC = () => {
                   <img className={styles.icon} src="/images/heart.svg" />
                 </div>
                 <div>
-                  <span className={styles.textBold}>97%</span>
+                  <span
+                    className={styles.textBold}
+                  >{`${percantageOfReviews}%`}</span>
                   <span className={styles.text}>{` would recommend`}</span>
                 </div>
               </div>
@@ -83,9 +105,9 @@ const Profile: FC = () => {
                   <img className={styles.icon} src="/images/check.svg" />
                 </div>
                 <div>
-                  <span className={styles.text}>
-                    {`Practising since 2006 years of experience`}
-                  </span>
+                  <span
+                    className={styles.text}
+                  >{`Practising since ${sinceYear}`}</span>
                 </div>
               </div>
 
@@ -97,7 +119,9 @@ const Profile: FC = () => {
                   <span
                     className={styles.text}
                   >{` 8 E.Max Veneers + Teeth Whitening Package from `}</span>
-                  <span className={styles.textBold}>€1,925</span>
+                  <span className={styles.textBold}>
+                    {currencyFormat(doctor.basePrice)}
+                  </span>
                 </div>
               </div>
             </div>
@@ -120,22 +144,18 @@ const Profile: FC = () => {
   );
 };
 
-interface ProfileParams extends ParsedUrlQuery {
-  slug: string;
-}
-
-/*export const getServerSideProps: GetServerSideProps<
+export const getServerSideProps: GetServerSideProps<
   ProfileProps,
   ProfileParams
 > = async (context) => {
   const { slug } = context.params!;
-  const { data } = await axios.get(`http://localhost:4000/${slug}`);
+  const { data } = await axios.get(`${BACKEND_SERVICE_URL}/${slug}`);
 
   return {
     props: {
       doctor: data,
     },
   };
-};*/
+};
 
 export default Profile;

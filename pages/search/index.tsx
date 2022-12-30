@@ -41,7 +41,7 @@ const DoctorSearch: FC<SearchProps> = ({ doctors }) => {
   return (
     <>
       <Head>
-        <title>Doctor Search Page</title>
+        <title>Qunomedical | Doctor Search Page</title>
       </Head>
       <Layout>
         <section className={styles.heroSection}>
@@ -125,7 +125,9 @@ const DoctorSearch: FC<SearchProps> = ({ doctors }) => {
                         <span className={styles.textBold}>
                           {doctor.ratingsAverage}
                         </span>
-                        <span className={styles.text}>{` (190 REVIEWS)`}</span>
+                        <span
+                          className={styles.text}
+                        >{` (${doctor.reviews} REVIEWS)`}</span>
                       </div>
                     </div>
                     <div className={styles.item}>

@@ -11,10 +11,12 @@ export interface Doctor {
   qunoScoreNumber: number;
   qunoScoreText: 'Excelent' | 'Very Good' | 'Good' | 'Regular' | 'Bad';
   ratingsAverage: number;
+  reviews: number;
   treatmentsLastYear: number;
   yearsExperience: number;
   basePrice: number;
   avatarUrl: string;
+  hospital: string;
 }
 
 export enum FILTER_ENUM {

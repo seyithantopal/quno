@@ -2,6 +2,7 @@
   display: flex;
   .image {
     width: 100%;
+    height: 200px;
   }
 }
 
@@ -118,10 +119,12 @@
     .buttonPrimary {
       @extend %buttonPrimary;
       box-shadow: 0px 2px 6px rgba(202, 202, 202, 0.2);
+      font-size: 18px;
     }
 
     .buttonSecondary {
       @extend %buttonSecondary;
+      font-size: 18px;
     }
   }
 }
