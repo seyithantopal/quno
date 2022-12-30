@@ -2,6 +2,22 @@ export type SwipeableType = {
   content: React.ReactNode;
 };
 
+export type KeysEnum<T> = { [P in keyof Required<T>]: P };
+
+export const SortableKeys: KeysEnum<
+  Pick<Doctor, 'qunoScoreNumber' | 'ratingsAverage' | 'basePrice'>
+> = {
+  qunoScoreNumber: 'qunoScoreNumber',
+  ratingsAverage: 'ratingsAverage',
+  basePrice: 'basePrice',
+};
+
+export type FilterType = {
+  label: FILTER_ENUM;
+  sortingColumn: keyof KeysEnum<typeof SortableKeys>;
+  sortingDirection: 'asc' | 'desc';
+};
+
 export interface Doctor {
   name: string;
   speciality: string;
@@ -22,5 +38,5 @@ export interface Doctor {
 export enum FILTER_ENUM {
   BEST_QUNOSCORE = 'Best Qunoscore',
   BEST_REVIEWS = 'Best Reviews',
-  LOWEST_QUNOSCORE = 'Lowest Qunoscore',
+  LOWEST_PRICE = 'Lowest Price',
 }

@@ -6,34 +6,48 @@ import axios from 'axios';
 import Filter from '../../components/Filter';
 import Swipeable from '../../components/Swipeable';
 import { adelleSansFont, nettoFont } from '../../utils/@fonts';
-import { Doctor, FILTER_ENUM, SwipeableType } from '../../utils/@types';
+import {
+  Doctor,
+  FilterType,
+  FILTER_ENUM,
+  SortableKeys,
+  SwipeableType,
+} from '../../utils/@types';
 import styles from '../../styles/modules/Search.module.scss';
 import Divider from '../../components/Divider';
 import Layout from '../../components/Layout';
-import { mockupDoctors } from '../api/mockups';
 import { currencyFormat } from '../../utils/@helpers/formatter';
 import { useFilterDoctors } from '../../utils/@hooks/useFilterDoctors';
-import { BACKEND_SERVICE_URL } from '../../utils/@contants';
+import { BACKEND_SERVICE_URL, WEBSITE_TITLE } from '../../utils/@contants';
 
 interface SearchProps {
   doctors: Doctor[];
 }
 
 const DoctorSearch: FC<SearchProps> = ({ doctors }) => {
-  const { sortedDoctors, handleChangeFilter } = useFilterDoctors(doctors);
+  const filters: FilterType[] = [
+    {
+      label: FILTER_ENUM.BEST_QUNOSCORE,
+      sortingColumn: SortableKeys.qunoScoreNumber,
+      sortingDirection: 'desc',
+    },
+    {
+      label: FILTER_ENUM.BEST_REVIEWS,
+      sortingColumn: SortableKeys.ratingsAverage,
+      sortingDirection: 'desc',
+    },
+    {
+      label: FILTER_ENUM.LOWEST_PRICE,
+      sortingColumn: SortableKeys.basePrice,
+      sortingDirection: 'asc',
+    },
+  ];
 
+  const { sortedDoctors, handleChangeFilter } = useFilterDoctors(doctors);
   const FilterButtonGroup: SwipeableType[] = [
     {
       content: (
-        <Filter
-          labels={[
-            FILTER_ENUM.BEST_QUNOSCORE,
-            FILTER_ENUM.BEST_REVIEWS,
-            FILTER_ENUM.LOWEST_QUNOSCORE,
-            FILTER_ENUM.LOWEST_QUNOSCORE,
-          ]}
-          handleChangeFilter={handleChangeFilter}
-        />
+        <Filter filters={filters} handleChangeFilter={handleChangeFilter} />
       ),
     },
   ];
@@ -41,7 +55,7 @@ const DoctorSearch: FC<SearchProps> = ({ doctors }) => {
   return (
     <>
       <Head>
-        <title>Qunomedical | Doctor Search Page</title>
+        <title>{`${WEBSITE_TITLE} | Search Doctors`}</title>
       </Head>
       <Layout>
         <section className={styles.heroSection}>
@@ -168,7 +182,7 @@ const DoctorSearch: FC<SearchProps> = ({ doctors }) => {
                   </div>
                 </div>
               </section>
-              {index !== mockupDoctors.length - 1 && <Divider />}
+              {index !== doctors.length - 1 && <Divider />}
             </Fragment>
           ))}
         </div>
@@ -180,11 +194,16 @@ const DoctorSearch: FC<SearchProps> = ({ doctors }) => {
 export const getServerSideProps: GetServerSideProps<SearchProps> = async (
   context,
 ) => {
-  const { data } = await axios.get(BACKEND_SERVICE_URL);
-
+  let doctors: Doctor[] = [];
+  try {
+    const { data } = await axios.get<Doctor[]>(BACKEND_SERVICE_URL);
+    doctors = data;
+  } catch (e) {
+    console.log('Something went wrong during fetching doctors: ', e);
+  }
   return {
     props: {
-      doctors: data,
+      doctors,
     },
   };
 };

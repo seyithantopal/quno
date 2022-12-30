@@ -1,34 +1,34 @@
 import { FC, useState } from 'react';
-import { FILTER_ENUM } from '../../utils/@types';
+import { FilterType, FILTER_ENUM } from '../../utils/@types';
 import styles from '../../styles/modules/Filter.module.scss';
 
 interface FilterProps {
-  labels: FILTER_ENUM[];
-  handleChangeFilter: (filter: FILTER_ENUM | null) => void;
+  handleChangeFilter: (filter: FilterType | null) => void;
+  filters: FilterType[];
 }
 
-const Filter: FC<FilterProps> = ({ labels, handleChangeFilter }) => {
+const Filter: FC<FilterProps> = ({ filters, handleChangeFilter }) => {
   const [filterLabel, setFilterLabel] = useState<FILTER_ENUM | null>(null);
 
-  const handleClick = (label: FILTER_ENUM) => {
-    handleChangeFilter(filterLabel === label ? null : label);
-    setFilterLabel(filterLabel === label ? null : label);
+  const handleClick = (filter: FilterType) => {
+    handleChangeFilter(filterLabel === filter.label ? null : filter);
+    setFilterLabel(filterLabel === filter.label ? null : filter.label);
   };
 
   return (
     <>
       <div className={styles.buttonContainer}>
-        {labels.map((label, index) => (
+        {filters.map((filter, index) => (
           <button
             key={index}
             className={`${
-              filterLabel === label
+              filterLabel === filter.label
                 ? styles.filterButtonPrimary
                 : styles.filterButtonSecondary
             }`}
-            onClick={() => handleClick(label)}
+            onClick={() => handleClick(filter)}
           >
-            {label}
+            {filter.label}
           </button>
         ))}
       </div>

@@ -1,7 +1,10 @@
 import { MAXIMUM_RATING, MINIMUM_RATING } from '../@contants';
 
 export const currencyFormat = (num: number) => {
-  return `€${num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`;
+  return `€${num
+    .toString()
+    .replace(/\.(.*?[0-9]*)/g, '')
+    .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}`;
 };
 
 export const yearsOfExperienceToSince = (yearsOfExperience: number) => {

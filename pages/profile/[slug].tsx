@@ -7,7 +7,7 @@ import { Doctor } from '../../utils/@types';
 import Layout from '../../components/Layout';
 import styles from '../../styles/modules/Profile.module.scss';
 import { adelleSansFont, nettoFont } from '../../utils/@fonts';
-import { BACKEND_SERVICE_URL } from '../../utils/@contants';
+import { BACKEND_SERVICE_URL, WEBSITE_TITLE } from '../../utils/@contants';
 import {
   calculatePercantageOfReviews,
   currencyFormat,
@@ -30,7 +30,7 @@ const Profile: FC<ProfileProps> = ({ doctor }) => {
   return (
     <>
       <Head>
-        <title>{`Qunomedical | ${doctor.name}`}</title>
+        <title>{`${WEBSITE_TITLE} | ${doctor.name}`}</title>
       </Head>
       <Layout>
         <section className={styles.doctorPictureSection}>
@@ -149,11 +149,17 @@ export const getServerSideProps: GetServerSideProps<
   ProfileParams
 > = async (context) => {
   const { slug } = context.params!;
-  const { data } = await axios.get(`${BACKEND_SERVICE_URL}/${slug}`);
+  let doctor = {} as Doctor;
+  try {
+    const { data } = await axios.get<Doctor>(`${BACKEND_SERVICE_URL}/${slug}`);
+    doctor = data;
+  } catch (e) {
+    console.log('Something went wrong during fetching doctors: ', e);
+  }
 
   return {
     props: {
-      doctor: data,
+      doctor,
     },
   };
 };
