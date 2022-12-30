@@ -1,0 +1,126 @@
+.doctorPictureSection {
+  display: flex;
+  .image {
+    width: 100%;
+  }
+}
+
+.content {
+  padding: 32px 21px 32px 21px;
+  background-color: $primary-color;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+
+    .speciality {
+      font: 14px Arial;
+      font-weight: 700;
+      color: $secondary-color;
+    }
+
+    .name {
+      font-size: 36px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+    .address {
+      display: flex;
+      flex-direction: row;
+      color: #a5cad5;
+      font-size: 16px;
+
+      .icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      .underlined {
+        text-decoration: underline;
+      }
+    }
+
+    .score {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      align-items: center;
+
+      .circle {
+        color: $secondary-color;
+
+        .outer {
+          background: rgba(255, 202, 88, 0.2);
+          width: 42px;
+          height: 42px;
+          position: relative;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            background-color: $primary-color;
+            border: 2px solid $secondary-color;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+          }
+        }
+      }
+
+      .quality {
+        font-family: Arial;
+        font-weight: 700;
+        font-size: 20px;
+        color: $secondary-color;
+      }
+
+      .qunoscore {
+        font-family: Arial;
+        font-weight: 400;
+        font-size: 10px;
+        color: #cacaca;
+      }
+    }
+
+    .reviews {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      justify-content: center;
+
+      .item {
+        @extend %USPItem;
+        font-family: Arial;
+        color: #fff;
+      }
+    }
+  }
+
+  .cta {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .buttonPrimary {
+      @extend %buttonPrimary;
+      box-shadow: 0px 2px 6px rgba(202, 202, 202, 0.2);
+    }
+
+    .buttonSecondary {
+      @extend %buttonSecondary;
+    }
+  }
+}
